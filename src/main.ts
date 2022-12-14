@@ -11,7 +11,8 @@ import * as passport from 'passport';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
   const viewsPath = join(__dirname, '../public/views');
   app.engine('.hbs', exphbs.engine({ extname: '.hbs', defaultLayout: 'main' }));
   app.set('views', viewsPath);
